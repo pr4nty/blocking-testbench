@@ -2,7 +2,7 @@ import { fetchUtils } from 'react-admin';
 import { stringify } from 'query-string';
 
 
-const apiUrl = 'https://tacklingtest.herokuapp.com/';
+const apiUrl = 'https://tacklingtest.herokuapp.com';
 
 // Get credentials from authProvider
 const httpClient = (url, options = {}) => {
