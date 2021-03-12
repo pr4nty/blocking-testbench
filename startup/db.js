@@ -6,9 +6,8 @@ require('dotenv').config();
 // Connect to DB
 module.exports = function(){
     try {
-        const databaseURL = config.get('db');
-        mongoose.connect(databaseURL, { useNewUrlParser: true , useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false})
-        .then(console.log('Connected to Db: ' + databaseURL))
+        mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true , useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false})
+        .then(console.log('Connected to Db: ' + process.env.DATABASE_URL))
     }
     catch (err) {
         console.log(err.message);

@@ -4,6 +4,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const cors = require('cors')
 const apiErrorHandler = require('./middleware/errorHandler');
+const path = require("path");
 require('dotenv').config();
 
 // Startup DB
@@ -14,6 +15,9 @@ require('./startup/ejs')(app);
 
 // Bodyparser
 app.use(express.urlencoded({ extended: false }));
+
+//
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 // Header for CORS
 var corsOptions = {
@@ -47,10 +51,14 @@ require('./startup/routes')(app);
 // Error Handler Middlerware
 app.use(apiErrorHandler);
 
+// 
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
 // SERVER STARTUP
-const port = process.env.PORT;
-const host = process.env.HOST;
-const server = app.listen(port, host, () => {
-    console.log(`Server listening to ${host} : ${port}`)
+const port = process.env.PORT || 5000;
+const server = app.listen(port, () => {
+    console.log(`Server listening to Port : ${port}`)
 });
 module.exports = server;
