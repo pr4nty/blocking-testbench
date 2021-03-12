@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "set NODE_ENV=production&& node index.js",
-    "devStart": "set NODE_ENV=development&& nodemon index.js"
+    "start": "node index.js",
+    "devStart": "set NODE_ENV=development&& nodemon index.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "jest": {
     "testEnvironment": "node"
@@ -35,5 +36,8 @@
   "devDependencies": {
     "nodemon": "^2.0.6",
     "supertest": "^5.0.0"
+  },
+  "engines": {
+    "node": "14.15.1"
   }
 }
