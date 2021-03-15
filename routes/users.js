@@ -192,7 +192,7 @@ router.put('/sendData/:id', async (req, res, next) => {
                 }, { new: true })
             
         res.send({ data: user })
-        If (!user) {
+        if (!user) {
             next(ApiError.internal('Test could not be added to users testlist. DB Error'));
             return;
         }

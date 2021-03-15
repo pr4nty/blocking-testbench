@@ -15,7 +15,7 @@ export const TestList = ({ permissions, ...props }) => {
     return (
       <List {...props} bulkActionButtons={false}>
         <Datagrid rowClick="show">
-            <TextField label="Test Nr." source='testId' />
+            <TextField label="Test ID" source='testId' />
             <DateField source='date' showTime />
             {permissions === 'coach' &&
               <DeleteButton basePath='/tests/' />}
