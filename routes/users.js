@@ -31,6 +31,18 @@ router.get("/", authenticateToken, async (req, res, next) => {
     }
 });
 
+// Player List for Raspberry
+router.get("/playerList", async (req, res, next) => {
+    const playerList = await User
+        .find({ role: "player" })
+        .select('firstName lastName');
+    res.send(playerList);
+    if (!playerList) {
+        next(ApiError.internal('DB Error. Player list could no be provided'));
+        return;
+    }
+});
+
 // Get Player Profile
 router.get("/:id", authenticateToken, async (req, res, next) => {
     try {
