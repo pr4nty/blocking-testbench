@@ -5,8 +5,8 @@ export default () => (
     <div>
         <div>
             <Card>
-                <CardHeader title="Welcome to the administration" />
-                <CardContent>Lorem ipsum sic dolor amet...</CardContent>
+                <CardHeader title="Welcome to the web app" />
+                <CardContent>Placeholder</CardContent>
             </Card>
         </div>
         

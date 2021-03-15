@@ -14,8 +14,7 @@ import {
     SelectInput, 
     TextInput,
     Show,
-    Tab, 
-    TabbedShowLayout,
+    SimpleShowLayout,
     ReferenceArrayField,
     SimpleForm,
     useListContext,
@@ -115,8 +114,7 @@ export const PlayerEdit = ({ permissions, ...props }) => (
 // The Show field for every Player
 export const PlayerProfile = props => (
   <Show title={<ProfileTitle />} {...props}>
-      <TabbedShowLayout >
-          <Tab label="summary">
+      <SimpleShowLayout >
               <TextField label="Surname:"source="lastName" />
               <TextField label="First name:" source="firstName" />
               <TextField label="Position:" source="position" />                               
@@ -127,14 +125,7 @@ export const PlayerProfile = props => (
                       <DateField source='date' showTime />
                   </Datagrid>
               </ReferenceArrayField>
-          </Tab>
-
-          <Tab label="List of Tests">
-          </Tab>
-
-          <Tab label="Chart Test">
-          </Tab>
-      </TabbedShowLayout>
+      </SimpleShowLayout>
   </Show>
 );
 
