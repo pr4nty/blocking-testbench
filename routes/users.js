@@ -179,7 +179,10 @@ router.put('/sendData/:id', async (req, res, next) => {
             testData: req.body.testData,
         });
         await test.save();
-        next(ApiError.internal('Test could not be saved. DB Error'));
+        if (!test) {
+            next(ApiError.internal('Test could not be saved. DB Error'));
+            return;
+        }
     
         const user = await User.findByIdAndUpdate(
                 {_id: req.params.id},
@@ -189,7 +192,10 @@ router.put('/sendData/:id', async (req, res, next) => {
                 }, { new: true })
             
         res.send({ data: user })
-        next(ApiError.internal('Test could not be added to users testlist. DB Error'));
+        If (!user) {
+            next(ApiError.internal('Test could not be added to users testlist. DB Error'));
+            return;
+        }
     }
     catch (err) {
         next(ApiError.internal('Something went wrong'));
