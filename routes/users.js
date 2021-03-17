@@ -239,7 +239,7 @@ router.post('/authenticate', async (req, res, next) => {
                 if(isMatch) {
                     // Create JWT with user data for authProvider
                     const token = jwt.sign({ id: user._id, firstName: user.firstName, lastName: user.lastName, position: user.position, role: user.role }, process.env.JWTPrivateKey, {
-                        expiresIn: 1080 // expires in 30 min
+                        expiresIn: 3600 // expires in 60 min
                     });
                     return res.status(200).json({token});
     
