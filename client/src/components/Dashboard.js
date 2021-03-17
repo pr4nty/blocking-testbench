@@ -5,7 +5,7 @@ export default () => (
     <div>
         <div>
             <Card>
-                <CardHeader title="Welcome to the web app" />
+                <CardHeader title="Welcome to the Tackling Test App" />
                 <CardContent>Placeholder</CardContent>
             </Card>
         </div>
