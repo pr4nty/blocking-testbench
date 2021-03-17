@@ -43,16 +43,7 @@ const Charts = ( record ) => {
         <div className="row">
           <div className="column">
             <h2>Deviation along the Z axis</h2>
-              <LineChart
-                width={500}
-                height={300}
-                data={data.testData}
-                margin={{
-                  top: 5,
-                  right: 30,
-                  left: 20,
-                  bottom: 5
-                }}>
+              <LineChart width={500} height={300} data={data.testData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="time" />
                 <YAxis dataKey="zAxis" />
@@ -71,7 +62,7 @@ const Charts = ( record ) => {
         <div className="row">
           <div className="column">
             <h2>Scatter Chart X and Y axis</h2>
-              <ScatterChart width={730} height={250} margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
+              <ScatterChart width={730} height={250} data={data.testData} margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="xAxis" name="X axis" unit="N" />
                 <YAxis dataKey="yAxis" name="Y Axis" unit="N" />
