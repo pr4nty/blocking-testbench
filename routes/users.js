@@ -14,33 +14,48 @@ const ApiError = require('../middleware/ApiError');
 
 // Get Player List
 router.get("/", authenticateToken, async (req, res, next) => {
-    const userCount = await User.countDocuments();
-    if (!userCount) {
-        next(ApiError.internal('DB Error'));
+    try {
+        let userCount = 0
+        userCount = await User.countDocuments({ role: "player"});
+        if (isNaN(userCount)) {
+            next(ApiError.internal('DB Error'));
+            return;
+        }
+        const playerList = await User
+            .find({ role: "player" })
+            .select('firstName lastName position numberOfTests testId username');
+        res.set('Access-Control-Expose-Headers', 'Content-Range')
+        res.set('Content-Range', `users : 0-10/${userCount}`);
+        res.send(playerList);
+        if (!playerList) {
+            next(ApiError.internal('DB Error. Player list could no be provided or is empty'));
+            return;
+        }
+    }
+    catch(err) {
+        next(ApiError.internal('Something went wrong'));
         return;
     }
-    const playerList = await User
-        .find({ role: "player" })
-        .select('firstName lastName position numberOfTests testId username');
-    res.set('Access-Control-Expose-Headers', 'Content-Range')
-    res.set('Content-Range', `users : 0-10/${userCount}`);
-    res.send(playerList);
-    if (!playerList) {
-        next(ApiError.internal('DB Error. Player list could no be provided'));
-        return;
-    }
+
 });
 
 // Player List for Raspberry
 router.get("/playerList", async (req, res, next) => {
-    const playerList = await User
+    try {
+        const playerList = await User
         .find({ role: "player" })
         .select('firstName lastName');
-    res.send(playerList);
-    if (!playerList) {
-        next(ApiError.internal('DB Error. Player list could no be provided'));
+        res.send(playerList);
+        if (!playerList) {
+            next(ApiError.internal('DB Error. Player list could no be provided'));
+            return;
+        }
+    }
+    catch(err) {
+        next(ApiError.internal('Something went wrong'));
         return;
     }
+
 });
 
 // Get Player Profile
@@ -100,7 +115,6 @@ router.post('/', authenticateToken, async (req, res, next) => {
         }
     }
     catch (err) {
-        console.log(err);
         next(ApiError.internal('Something went wrong'));
         return;
     }

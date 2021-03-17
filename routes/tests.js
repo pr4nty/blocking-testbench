@@ -11,20 +11,27 @@ const ApiError = require('../middleware/ApiError');
 
 // Methods
 router.get('/', authenticateToken , async (req, res, next) => {
-    const testCount = await Test.countDocuments();
-    if (!testCount) {
-        next(ApiError.internal('DB Error'));
+    try {
+        let testCount = 0
+        testCount = await Test.countDocuments();
+        if (isNaN(testCount)) {
+            next(ApiError.internal('DB Error'));
+            return;
+        }
+        const tests = await Test.find()
+        res.set('Access-Control-Expose-Headers', 'Content-Range')
+        res.set('Content-Range', `tests : 0-10/${testCount}`);
+        res.send(tests);
+        if (!tests) {
+            next(ApiError.internal('DB Error. Test list could no be provided or list is empty'));
+            return;
+        }
+    }
+    catch (err) {
+        next(ApiError.internal('Something went wrong'));
         return;
     }
-    const tests = await Test
-        .find()
-    res.set('Access-Control-Expose-Headers', 'Content-Range')
-    res.set('Content-Range', `tests : 0-10/${testCount}`);
-    res.send(tests);
-    if (!tests) {
-        next(ApiError.internal('DB Error. Test list could no be provided'));
-        return;
-    }
+
 });
 
 router.get('/:id', authenticateToken, async (req, res, next) => {

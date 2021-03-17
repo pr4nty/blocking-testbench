@@ -26,8 +26,6 @@ const Charts = ( record ) => {
     if (error) return <Error />;
     if (!data) return null;
 
-    // console.log(data.testId);
-
     // Calculate key figures
     var i;
     const zAxis = [];
