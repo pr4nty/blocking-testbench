@@ -97,6 +97,7 @@ const choices = [
   { id: 'P', name: 'Punter' },
   { id: 'LS', name: 'Long Snapper' },
   { id: 'H', name: 'Holder' },
+  { id: 'Coach', name: 'Coach'}
 ];
 
 export const PlayerEdit = ({ permissions, ...props }) => (
@@ -121,8 +122,8 @@ export const PlayerProfile = props => (
               <TextField source="numberOfTests" />
               <ReferenceArrayField label="List of Tests:" reference="tests" source="testId">
                   <Datagrid rowClick="show">
-                      <TextField source="testId" />
                       <DateField source='date' showTime />
+                      <TextField source="testId" label="Test ID"/>
                   </Datagrid>
               </ReferenceArrayField>
       </SimpleShowLayout>
