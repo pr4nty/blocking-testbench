@@ -62,12 +62,13 @@ const Charts = ( record ) => {
         <div className="row">
           <div className="column">
             <h2>Scatter Chart X and Y axis</h2>
-              <ScatterChart width={730} height={250} data={data.testData} margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
+              <ScatterChart width={730} height={250} margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="xAxis" name="X axis" unit="N" />
                 <YAxis dataKey="yAxis" name="Y Axis" unit="N" />
                 <ZAxis dataKey="time"  name="time" unit="s" />
                 <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                <Scatter name="X and Y scatter" data={data.testData} fill="#8884d8" />
               </ScatterChart>
           </div>
           <div className="column">
