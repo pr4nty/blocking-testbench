@@ -189,8 +189,7 @@ router.put('/sendData/:id', async (req, res, next) => {
         };
         
         const test =  new Test({
-            date: req.body.date,
-            testData: req.body.testData,
+            testData: req.body
         });
         await test.save();
         if (!test) {
