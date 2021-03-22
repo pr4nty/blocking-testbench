@@ -5,9 +5,7 @@ const users = require('../routes/users');
 const tests = require('../routes/tests');
 
 // Export
-module.exports = function(app) {
-    app.use(express.json());
-    
+module.exports = function(app) {    
     app.use('/users', users);
     app.use('/tests', tests);
 }
