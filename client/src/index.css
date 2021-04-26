@@ -32,3 +32,15 @@ code {
     width: 100%;
   }
 }
+
+.wrapper > div {
+  position:absolute;
+  width:50vw;
+  height:50vh;
+  overflow:hidden;
+}
+
+#chart1 {top:0;left:0;}
+#chart2 {top:0;right:0;}
+#chart3 {bottom:0;left:0;}
+#chart4 {bottom:-100;right:-300;}

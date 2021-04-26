@@ -38,7 +38,7 @@ function App() {
   return (
       <Admin theme={theme} title="Swarco Raiders" loginPage={MyLoginPage} dashboard={Dashboard} authProvider={authProvider} dataProvider={dataProvider}>
         <Resource name= 'users' list={PlayerList} show={PlayerProfile} edit={PlayerEdit} create={PlayerCreate} options={{ label: 'Player List' }} icon={UserIcon} /> 
-        <Resource name= 'tests'list={TestList} show={Charts} icon={AssignmentSharpIcon} />  
+        <Resource name= 'tests' list={TestList} show={Charts} icon={AssignmentSharpIcon} />  
       </Admin>
   );
 }
