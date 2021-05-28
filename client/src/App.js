@@ -24,7 +24,7 @@ import Charts from './components/chart/Charts';
 // Dark Mode
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
+    type: 'light',
   },
 });
 
